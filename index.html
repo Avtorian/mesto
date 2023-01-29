@@ -12,7 +12,6 @@
 
   <header class="header">
     <img src="./images/logo.svg" alt="Логотип" class="header__logo">
-    <div class="header__line"></div>
   </header>
   <main class="main">
     <section class="profile">
@@ -24,7 +23,7 @@
         </div>
         <p class="profile__avatar-job">Исследователь океана</p>
       </div>
-      <button type="button" class="profile__addButton"></button>
+      <button type="button" class="profile__add-button"></button>
 
 
     </section>
@@ -34,7 +33,7 @@
           <img src="./images/Karachaevsk.png" alt="Карачаевск" class="elements__item-photo">
           <div class="elements__container">
             <h2 class="elements__item-title">Карачаевск</h2>
-            <button type="button" class="elements__likeButton"></button>
+            <button type="button" class="elements__like-button"></button>
           </div>
 
         </li>
@@ -42,35 +41,35 @@
           <img src="./images/Elbrus.png" alt="Гора Эльбрус" class="elements__item-photo">
           <div class="elements__container">
             <h2 class="elements__item-title">Гора Эльбрус</h2>
-            <button type="button" class="elements__likeButton"></button>
+            <button type="button" class="elements__like-button"></button>
           </div>
         </li>
         <li class="elements__item">
           <img src="./images/Dombai.png" alt="Домбай" class="elements__item-photo">
           <div class="elements__container">
             <h2 class="elements__item-title">Домбай</h2>
-            <button type="button" class="elements__likeButton"></button>
+            <button type="button" class="elements__like-button"></button>
           </div>
         </li>
         <li class="elements__item">
           <img src="./images/Elbrus.png" alt="Гора Эльбрус" class="elements__item-photo">
           <div class="elements__container">
             <h2 class="elements__item-title">Гора Эльбрус</h2>
-            <button type="button" class="elements__likeButton"></button>
+            <button type="button" class="elements__like-button"></button>
           </div>
         </li>
         <li class="elements__item">
           <img src="./images/Dombai.png" alt="Домбай" class="elements__item-photo">
           <div class="elements__container">
             <h2 class="elements__item-title">Домбай</h2>
-            <button type="button" class="elements__likeButton"></button>
+            <button type="button" class="elements__like-button"></button>
           </div>
         </li>
         <li class="elements__item">
           <img src="./images/Karachaevsk.png" alt="Карачаевск" class="elements__item-photo">
           <div class="elements__container">
             <h2 class="elements__item-title">Карачаевск</h2>
-            <button type="button" class="elements__likeButton"></button>
+            <button type="button" class="elements__like-button"></button>
           </div>
         </li>
       </ul>
@@ -81,20 +80,18 @@
   </footer>
 
 
-  <section class="popup">
+  <div class="popup">
     <div class="popup__container">
       <h3 class="popup__title">Редактировать профиль</h3>
-      <form class="popup__input">
-        <input type="text" placeholder="Имя" class="popup__input-text popup__input-text_type_name">
-        <div class="popup__line"></div>
-        <input type="text" placeholder="Работа" class="popup__input-text popup__input-text_type_job">
-        <div class="popup__line"></div>
+      <form name="popupForm" class="popup__input">
+        <input name="avatarName" type="text" placeholder="Имя" class="popup__input-text popup__input-text_type_name">
+        <input name="avatarJob" type="text" placeholder="Работа" class="popup__input-text popup__input-text_type_job">
         <button type="submit" class="popup__submit-btn">Сохранить</button>
       </form>
       <button type="button" class="popup__close"></button>
     </div>
-  </section>
+  </div>
 
-  <script src="./index.js"></script>
+  <script src="./scripts/index.js"></script>
 </body>
 </html>
