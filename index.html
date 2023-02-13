@@ -46,7 +46,7 @@
     </li>
   </template>
 
-  <div class="popup">
+  <div class="popup profilePopup">
     <div class="popup__container">
       <h3 class="popup__title">Редактировать профиль</h3>
       <form name="popupForm" class="popup__input">
@@ -58,26 +58,27 @@
     </div>
   </div>
 
-  <div class="popupAdd">
-    <div class="popupAdd__container">
-      <h3 class="popupAdd__title">Новое место</h3>
-      <form name="popupAddForm" class="popupAdd__input">
-        <input name="mestoTitle" type="text" placeholder="Название" class="popupAdd__input-text popupAdd__input-text_type_title">
-        <input name="mestoLink" type="link" placeholder="Ссылка на картинку" class="popupAdd__input-text popupAdd__input-text_type_link">
-        <button type="submit" class="popupAdd__submit-btn">Создать</button>
+  <div class="popup cardPopup">
+    <div class="popup__container">
+      <h3 class="popup__title">Новое место</h3>
+      <form name="popupForm" class="popup__input">
+        <input name="mestoTitle" type="text" placeholder="Название" class="popup__input-text popup__input-text_type_title">
+        <input name="mestoLink" type="link" placeholder="Ссылка на картинку" class="popup__input-text popup__input-text_type_link">
+        <button type="submit" class="popup__submit-btn">Создать</button>
       </form>
-      <button type="button" class="popupAdd__close"></button>
+      <button type="button" class="popup__close"></button>
     </div>
   </div>
 
-  <div class="popupImage">
-    <div class="popupImage__container">
-      <img class="popupImage__photo" src="#" alt="Фото">
-      <p class="popupImage__text"></p>
-      <button type="button" class="popupImage__close"></button>
+  <div class="popup imagePopup">
+    <div class="popup__container">
+      <img class="popup__photo" src="#" alt="Фото">
+      <p class="popup__text"></p>
+      <button type="button" class="popup__close"></button>
     </div>
   </div>
 
+  <script src="./scripts/cards.js"></script>
   <script src="./scripts/index.js"></script>
 </body>
 </html>
