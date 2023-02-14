@@ -44,8 +44,10 @@ function closePopup(popup) {
   popup.classList.remove('popup_opened');
 }
 
-nameInput.value = avatarName.textContent;
-jobInput.value = avatarJob.textContent;
+function fillForm(){
+  nameInput.value = avatarName.textContent;
+  jobInput.value = avatarJob.textContent;
+}
 
 
 //функции отправки формы профиля
@@ -70,6 +72,7 @@ function submitFormCard(evt) {
 
 //обработчики открытия попапов
 profilePopupOpen.addEventListener('click', () => openPopup(profilePopup));
+profilePopupOpen.addEventListener('click', fillForm);
 cardPopupOpen.addEventListener('click', () => openPopup(cardPopup));
 
 
