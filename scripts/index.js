@@ -2,6 +2,7 @@ const profile = document.querySelector('.profile');
 const avatarName = profile.querySelector('.profile__avatar-name');
 const avatarJob = profile.querySelector('.profile__avatar-job');
 const elementsContainer = document.querySelector('.elements__items');
+const popupList = document.querySelectorAll('.popup');
 
 
 //Попапы
@@ -38,15 +39,42 @@ const popupText = imagePopup.querySelector('.popup__text');
 
 function openPopup(popup) {
   popup.classList.add('popup_opened');
+  setPopupEsc();
+  enableValidation();
 }
 
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
+  clearInputError();
+  removePopupEsc();
+}
+function closePopupOverlay(evt) {
+  popupList.forEach((item) => {
+    if (evt.target === item) {
+      closePopup(item);
+    }
+  });
+}
+function closePopupEsc(evt) {
+  popupList.forEach((item) => {
+    if (item.classList.contains('popup_opened')) {
+      if (evt.key === 'Escape') {
+        closePopup(item);
+      }
+    }
+  });
+}
+function setPopupEsc() {
+  document.addEventListener('keydown', closePopupEsc);
+}
+function removePopupEsc() {
+  document.removeEventListener('keydown', closePopupEsc);
 }
 
-function fillForm(){
+function fillForm() {
   nameInput.value = avatarName.textContent;
   jobInput.value = avatarJob.textContent;
+  openPopup(profilePopup);
 }
 
 
@@ -71,12 +99,15 @@ function submitFormCard(evt) {
 }
 
 //обработчики открытия попапов
-profilePopupOpen.addEventListener('click', () => openPopup(profilePopup));
 profilePopupOpen.addEventListener('click', fillForm);
 cardPopupOpen.addEventListener('click', () => openPopup(cardPopup));
 
 
 //обработчики закрытия попапов
+profilePopup.addEventListener('click', closePopupOverlay);
+cardPopup.addEventListener('click', closePopupOverlay);
+imagePopup.addEventListener('click', closePopupOverlay);
+
 profilePopupClose.addEventListener('click', () => closePopup(profilePopup));
 cardPopupClose.addEventListener('click', () => closePopup(cardPopup));
 imagePopupClose.addEventListener('click', () => closePopup(imagePopup));
