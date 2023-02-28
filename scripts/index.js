@@ -2,7 +2,6 @@ const profile = document.querySelector('.profile');
 const avatarName = profile.querySelector('.profile__avatar-name');
 const avatarJob = profile.querySelector('.profile__avatar-job');
 const elementsContainer = document.querySelector('.elements__items');
-const popupList = document.querySelectorAll('.popup');
 
 
 //Попапы
@@ -40,29 +39,23 @@ const popupText = imagePopup.querySelector('.popup__text');
 function openPopup(popup) {
   popup.classList.add('popup_opened');
   setPopupEsc();
-  enableValidation();
 }
 
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
-  clearInputError();
   removePopupEsc();
 }
+
 function closePopupOverlay(evt) {
-  popupList.forEach((item) => {
-    if (evt.target === item) {
-      closePopup(item);
-    }
-  });
+  if (evt.target.classList.contains('popup_opened')) {
+    closePopup(evt.target);
+  }
 }
 function closePopupEsc(evt) {
-  popupList.forEach((item) => {
-    if (item.classList.contains('popup_opened')) {
-      if (evt.key === 'Escape') {
-        closePopup(item);
-      }
-    }
-  });
+  if (evt.key === 'Escape') {
+    const popup = document.querySelector('.popup_opened');
+    closePopup(popup);
+  }
 }
 function setPopupEsc() {
   document.addEventListener('keydown', closePopupEsc);
@@ -152,9 +145,8 @@ function createCard(item) {
   elementItemPhoto.alt = item.name;
   const deleteButton = elementItem.querySelector('.elements__item-delete');
   const likeButton = elementItem.querySelector('.elements__like-button');
-  const openButton = elementItem.querySelector('.elements__item-photo');
   deleteButton.addEventListener('click', handleDelete);
   likeButton.addEventListener('click', handleLike);
-  openButton.addEventListener('click', handleOpen);
+  elementItemPhoto.addEventListener('click', handleOpen);
   return elementItem;
 }

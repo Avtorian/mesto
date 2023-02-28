@@ -50,7 +50,6 @@
     <div class="popup__container">
       <h3 class="popup__title">Редактировать профиль</h3>
       <form name="popupForm" class="popup__input" novalidate>
-        <fieldset class="popup__input-set">
           <input id="avatarName-input" name="avatarName" type="text" placeholder="Имя"
             class="popup__input-text popup__input-text_type_name" minlength="2" maxlength="40" required>
           <span class="popup__input-error avatarName-input-error">Вы пропустили это поле.</span>
@@ -58,7 +57,6 @@
             class="popup__input-text popup__input-text_type_job" minlength="2" maxlength="200" required>
           <span class="popup__input-error avatarJob-input-error">Вы пропустили это поле.</span>
           <button type="submit" class="popup__submit-btn popup__submit-btn_inactive">Сохранить</button>
-        </fieldset>
       </form>
       <button type="button" class="popup__close"></button>
     </div>
@@ -68,7 +66,6 @@
     <div class="popup__container">
       <h3 class="popup__title">Новое место</h3>
       <form name="popupForm" class="popup__input" novalidate>
-        <fieldset class="popup__input-set">
           <input id="mestoTitle-input" name="mestoTitle" type="text" placeholder="Название"
             class="popup__input-text popup__input-text_type_title" minlength="2" maxlength="30" required>
           <span class="popup__input-error mestoTitle-input-error">Вы пропустили это поле.</span>
@@ -76,7 +73,6 @@
             class="popup__input-text popup__input-text_type_link" required>
           <span class="popup__input-error mestoLink-input-error">Вы пропустили это поле.</span>
           <button type="submit" class="popup__submit-btn popup__submit-btn_inactive" disabled>Создать</button>
-        </fieldset>
       </form>
       <button type="button" class="popup__close"></button>
     </div>
