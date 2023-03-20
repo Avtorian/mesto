@@ -1,3 +1,6 @@
+import { Card } from "./Card.js";
+import { initialCards } from './cards.js';
+import { FormValidator } from "./FormValidator.js";
 const profile = document.querySelector('.profile');
 const avatarName = profile.querySelector('.profile__avatar-name');
 const avatarJob = profile.querySelector('.profile__avatar-job');
@@ -7,7 +10,7 @@ const elementsContainer = document.querySelector('.elements__items');
 //Попапы
 const profilePopup = document.querySelector('.profilePopup');
 const cardPopup = document.querySelector('.cardPopup');
-const imagePopup = document.querySelector('.imagePopup');
+export const imagePopup = document.querySelector('.imagePopup');
 //Кнопки закрытия попапов
 const profilePopupClose = profilePopup.querySelector('.popup__close');
 const cardPopupClose = cardPopup.querySelector('.popup__close');
@@ -26,17 +29,16 @@ const nameInput = profilePopupForm.querySelector('.popup__input-text_type_name')
 const jobInput = profilePopupForm.querySelector('.popup__input-text_type_job');
 
 //Темплейт
-const elementTemplate = document.querySelector('#element').content;
 
 const mestoTitle = cardPopupForm.querySelector('.popup__input-text_type_title');
 const mestoLink = cardPopupForm.querySelector('.popup__input-text_type_link');
 
-const popupPhoto = imagePopup.querySelector('.popup__photo');
-const popupText = imagePopup.querySelector('.popup__text');
+export const popupPhoto = imagePopup.querySelector('.popup__photo');
+export const popupText = imagePopup.querySelector('.popup__text');
 
 
 
-function openPopup(popup) {
+export function openPopup(popup) {
   popup.classList.add('popup_opened');
   setPopupEsc();
 }
@@ -110,43 +112,26 @@ profilePopupForm.addEventListener('submit', submitFormProfile);
 cardPopupForm.addEventListener('submit', submitFormCard);
 //Выгрузка карточек из массива
 
-const handleDelete = (evt) => {
-  evt.target.closest('.elements__item').remove();
-};
-
-const handleLike = (evt) => {
-  evt.target.classList.toggle('elements__like-button_active');
-};
-
-const handleOpen = (evt) => {
-  const thisItem = evt.target.closest('.elements__item');
-  const itemPhoto = thisItem.querySelector('.elements__item-photo');
-  const itemText = thisItem.querySelector('.elements__item-title');
-  openPopup(imagePopup);
-  popupPhoto.src = itemPhoto.src;
-  popupPhoto.alt = itemText.textContent;
-  popupText.textContent = itemText.textContent;
-}
-
-
 initialCards.forEach((item) => {
   generateCard(item);
 });
+
 function generateCard(item) {
-  const newCard = createCard(item);
-  elementsContainer.prepend(newCard);
+  const element = new Card(item, "#element");
+  elementsContainer.prepend(element.createCard());
 }
-function createCard(item) {
-  const elementItem = elementTemplate.querySelector('.elements__item').cloneNode(true);
-  const elementItemPhoto = elementItem.querySelector('.elements__item-photo');
-  const elementItemTitle = elementItem.querySelector('.elements__item-title');
-  elementItemTitle.textContent = item.name;
-  elementItemPhoto.src = item.link;
-  elementItemPhoto.alt = item.name;
-  const deleteButton = elementItem.querySelector('.elements__item-delete');
-  const likeButton = elementItem.querySelector('.elements__like-button');
-  deleteButton.addEventListener('click', handleDelete);
-  likeButton.addEventListener('click', handleLike);
-  elementItemPhoto.addEventListener('click', handleOpen);
-  return elementItem;
-}
+
+export const settings = {
+  formSelector: '.popup__input',
+  inputSelector: '.popup__input-text',
+  submitButtonSelector: '.popup__submit-btn',
+  inactiveButtonClass: 'popup__submit-btn_inactive',
+  inputErrorClass: 'popup__input-text_type_error',
+  errorClass: 'popup__input-error_active',
+  inputSet: '.popup__input-set',
+};
+
+const profilePopupValid = new FormValidator(settings, profilePopup);
+profilePopupValid.enableValidation();
+const cardPopupValid = new FormValidator(settings, cardPopup);
+cardPopupValid.enableValidation();
