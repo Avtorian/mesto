@@ -1,8 +1,8 @@
 import { Card } from "./Card.js";
 import { initialCards } from './cards.js';
 import { FormValidator } from "./FormValidator.js";
-import {openPopup, closePopup, closePopupEsc, setPopupEsc, removePopupEsc} from "./utils/utils.js";
-import { imagePopup, popupPhoto, popupText } from "./utils/constants.js";
+import {openPopup, closePopup} from "./utils/utils.js";
+import { imagePopup } from "./utils/constants.js";
 
 const profile = document.querySelector('.profile');
 const avatarName = profile.querySelector('.profile__avatar-name');
