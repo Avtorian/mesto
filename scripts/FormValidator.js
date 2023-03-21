@@ -1,4 +1,3 @@
-import { settings } from "./index.js";
 export class FormValidator {
   constructor(settings, formElement) {
     this._settings = settings;

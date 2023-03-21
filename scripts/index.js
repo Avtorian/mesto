@@ -1,47 +1,32 @@
 import { Card } from "./Card.js";
 import { initialCards } from './cards.js';
 import { FormValidator } from "./FormValidator.js";
+import { openPopup } from "./utils/utils.js";
+import { imagePopup, popupPhoto, popupText } from "./utils/constants.js";
+
 const profile = document.querySelector('.profile');
 const avatarName = profile.querySelector('.profile__avatar-name');
 const avatarJob = profile.querySelector('.profile__avatar-job');
 const elementsContainer = document.querySelector('.elements__items');
-
-
 //Попапы
 const profilePopup = document.querySelector('.profilePopup');
 const cardPopup = document.querySelector('.cardPopup');
-export const imagePopup = document.querySelector('.imagePopup');
 //Кнопки закрытия попапов
 const profilePopupClose = profilePopup.querySelector('.popup__close');
 const cardPopupClose = cardPopup.querySelector('.popup__close');
 const imagePopupClose = imagePopup.querySelector('.popup__close');
-
 //Кнопки открытия попапов
 const profilePopupOpen = profile.querySelector('.profile__edit-button');
 const cardPopupOpen = profile.querySelector('.profile__add-button');
 //Отправка формы
 const profilePopupForm = profilePopup.querySelector('.popup__input');
 const cardPopupForm = cardPopup.querySelector('.popup__input');
-
-
 //Поля ввода формы профиля
 const nameInput = profilePopupForm.querySelector('.popup__input-text_type_name');
 const jobInput = profilePopupForm.querySelector('.popup__input-text_type_job');
-
 //Темплейт
-
 const mestoTitle = cardPopupForm.querySelector('.popup__input-text_type_title');
 const mestoLink = cardPopupForm.querySelector('.popup__input-text_type_link');
-
-export const popupPhoto = imagePopup.querySelector('.popup__photo');
-export const popupText = imagePopup.querySelector('.popup__text');
-
-
-
-export function openPopup(popup) {
-  popup.classList.add('popup_opened');
-  setPopupEsc();
-}
 
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
@@ -72,7 +57,6 @@ function fillForm() {
   openPopup(profilePopup);
 }
 
-
 //функции отправки формы профиля
 function submitFormProfile(evt) {
   evt.preventDefault();
@@ -92,11 +76,9 @@ function submitFormCard(evt) {
   generateCard(item);
   closePopup(cardPopup);
 }
-
 //обработчики открытия попапов
 profilePopupOpen.addEventListener('click', fillForm);
 cardPopupOpen.addEventListener('click', () => openPopup(cardPopup));
-
 
 //обработчики закрытия попапов
 profilePopup.addEventListener('click', closePopupOverlay);
@@ -121,7 +103,7 @@ function generateCard(item) {
   elementsContainer.prepend(element.createCard());
 }
 
-export const settings = {
+const settings = {
   formSelector: '.popup__input',
   inputSelector: '.popup__input-text',
   submitButtonSelector: '.popup__submit-btn',
