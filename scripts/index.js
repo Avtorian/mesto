@@ -1,7 +1,7 @@
 import { Card } from "./Card.js";
 import { initialCards } from './cards.js';
 import { FormValidator } from "./FormValidator.js";
-import { openPopup } from "./utils/utils.js";
+import {openPopup, closePopup, closePopupEsc, setPopupEsc, removePopupEsc} from "./utils/utils.js";
 import { imagePopup, popupPhoto, popupText } from "./utils/constants.js";
 
 const profile = document.querySelector('.profile');
@@ -28,29 +28,11 @@ const jobInput = profilePopupForm.querySelector('.popup__input-text_type_job');
 const mestoTitle = cardPopupForm.querySelector('.popup__input-text_type_title');
 const mestoLink = cardPopupForm.querySelector('.popup__input-text_type_link');
 
-function closePopup(popup) {
-  popup.classList.remove('popup_opened');
-  removePopupEsc();
-}
-
 function closePopupOverlay(evt) {
   if (evt.target.classList.contains('popup_opened')) {
     closePopup(evt.target);
   }
 }
-function closePopupEsc(evt) {
-  if (evt.key === 'Escape') {
-    const popup = document.querySelector('.popup_opened');
-    closePopup(popup);
-  }
-}
-function setPopupEsc() {
-  document.addEventListener('keydown', closePopupEsc);
-}
-function removePopupEsc() {
-  document.removeEventListener('keydown', closePopupEsc);
-}
-
 function fillForm() {
   nameInput.value = avatarName.textContent;
   jobInput.value = avatarJob.textContent;
