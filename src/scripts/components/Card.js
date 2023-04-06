@@ -20,15 +20,12 @@ export class Card {
   _handleLike = () => {
     this._likeButton.classList.toggle('elements__like-button_active');
   };
-  _handleView = () => {
-    this._handleCardClick(this._title, this._photo);
-  }
   _setEventListeners() {
     this._deleteButton = this._elementItem.querySelector('.elements__item-delete');
     this._likeButton = this._elementItem.querySelector('.elements__like-button');
     this._deleteButton.addEventListener('click', () => { this._handleDelete() });
     this._likeButton.addEventListener('click', () => { this._handleLike() });
-    this._elementItemPhoto.addEventListener('click', () => { this._handleView() });
+    this._elementItemPhoto.addEventListener('click', () => { this._handleCardClick(this._title, this._photo)});
   }
   createCard() {
     this._elementItem = this._getTemplate();
