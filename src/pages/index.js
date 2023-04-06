@@ -39,6 +39,7 @@ profilePopupOpen.addEventListener("click", () => {
   const userdata = userInfo.getUserInfo();
   nameInput.value = userdata.nameInput;
   jobInput.value = userdata.jobInput;
+  profilePopupValid.resetValidation();
 });
 
 //Генерация карточек
@@ -77,6 +78,7 @@ cardPopup.setEventListeners();
 
 cardPopupOpen.addEventListener("click", () => {
   cardPopup.open();
+  cardPopupValid.resetValidation();
 });
 
 //Попап открытия изображений с описанием
