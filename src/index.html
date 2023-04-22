@@ -14,7 +14,10 @@
   </header>
   <main class="main">
     <section class="profile">
-      <img src="<%=require('./images/avatar.jpg')%>" alt="Аватар" class="profile__avatar">
+      <div class="profile__container-avatar">
+        <img src="<%=require('./images/avatar.jpg')%>" alt="Аватар" class="profile__avatar">
+        <button type="button" class="profile__avatar-edit"></button>
+      </div>
       <div class="profile__info">
         <div class="profile__container">
           <h1 class="profile__avatar-name">Жак-Ив Кусто</h1>
@@ -39,7 +42,10 @@
       <img src="<%=require('./images/Karachaevsk.png')%>" alt="Карачаевск" class="elements__item-photo">
       <div class="elements__container">
         <h2 class="elements__item-title">Карачаевск</h2>
-        <button type="button" class="elements__like-button"></button>
+        <div class="elements__like-container">
+          <button type="button" class="elements__like-button"></button>
+          <p class="elements__like-value">0</p>
+        </div>
       </div>
       <button type="button" class="elements__item-delete"></button>
     </li>
@@ -49,13 +55,13 @@
     <div class="popup__container">
       <h3 class="popup__title">Редактировать профиль</h3>
       <form name="popupForm" class="popup__input" novalidate>
-          <input id="avatarName-input" name="avatarName" type="text" placeholder="Имя"
-            class="popup__input-text popup__input-text_type_name" minlength="2" maxlength="40" required>
-          <span class="popup__input-error avatarName-input-error">Вы пропустили это поле.</span>
-          <input id="avatarJob-input" name="avatarJob" type="text" placeholder="Работа"
-            class="popup__input-text popup__input-text_type_job" minlength="2" maxlength="200" required>
-          <span class="popup__input-error avatarJob-input-error">Вы пропустили это поле.</span>
-          <button type="submit" class="popup__submit-btn popup__submit-btn_inactive">Сохранить</button>
+        <input id="avatarName-input" name="avatarName" type="text" placeholder="Имя"
+          class="popup__input-text popup__input-text_type_name" minlength="2" maxlength="40" required>
+        <span class="popup__input-error avatarName-input-error">Вы пропустили это поле.</span>
+        <input id="avatarJob-input" name="avatarJob" type="text" placeholder="Работа"
+          class="popup__input-text popup__input-text_type_job" minlength="2" maxlength="200" required>
+        <span class="popup__input-error avatarJob-input-error">Вы пропустили это поле.</span>
+        <button type="submit" class="popup__submit-btn popup__submit-btn_inactive">Сохранить</button>
       </form>
       <button type="button" class="popup__close"></button>
     </div>
@@ -65,13 +71,13 @@
     <div class="popup__container">
       <h3 class="popup__title">Новое место</h3>
       <form name="popupForm" class="popup__input" novalidate>
-          <input id="mestoTitle-input" name="mestoTitle" type="text" placeholder="Название"
-            class="popup__input-text popup__input-text_type_title" minlength="2" maxlength="30" required>
-          <span class="popup__input-error mestoTitle-input-error">Вы пропустили это поле.</span>
-          <input id="mestoLink-input" name="mestoLink" type="url" placeholder="Ссылка на картинку"
-            class="popup__input-text popup__input-text_type_link" required>
-          <span class="popup__input-error mestoLink-input-error">Вы пропустили это поле.</span>
-          <button type="submit" class="popup__submit-btn popup__submit-btn_inactive" disabled>Создать</button>
+        <input id="mestoTitle-input" name="mestoTitle" type="text" placeholder="Название"
+          class="popup__input-text popup__input-text_type_title" minlength="2" maxlength="30" required>
+        <span class="popup__input-error mestoTitle-input-error">Вы пропустили это поле.</span>
+        <input id="mestoLink-input" name="mestoLink" type="url" placeholder="Ссылка на картинку"
+          class="popup__input-text popup__input-text_type_link" required>
+        <span class="popup__input-error mestoLink-input-error">Вы пропустили это поле.</span>
+        <button type="submit" class="popup__submit-btn popup__submit-btn_inactive" disabled>Создать</button>
       </form>
       <button type="button" class="popup__close"></button>
     </div>
@@ -85,6 +91,29 @@
     </div>
   </div>
 
+  <div class="popup deletePopup">
+    <div class="popup__container">
+      <div class="popup__confirm-container">
+        <h3 class="popup__title">Вы уверены?</h3>
+        <button type="button" class="popup__confirm">Да</button>
+      </div>
+      <button type="button" class="popup__close"></button>
+    </div>
+  </div>
+
+  <div class="popup avatarPopup">
+    <div class="popup__container">
+      <h3 class="popup__title">Обновить аватар</h3>
+      <form name="popupForm" class="popup__input" novalidate>
+        <input id="avatarLink-input" name="avatarLink" type="url" placeholder="Ссылка на фото"
+          class="popup__input-text popup__input-text_type_link" required>
+        <span class="popup__input-error avatarLink-input-error">Вы пропустили это поле.</span>
+        <button type="submit" class="popup__submit-btn popup__submit-btn_inactive" disabled>Сохранить</button>
+      </form>
+      <button type="button" class="popup__close"></button>
+    </div>
+  </div>
+  </div>
 </body>
 
 </html>
