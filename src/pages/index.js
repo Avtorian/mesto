@@ -35,10 +35,12 @@ const profilePopup = new PopupWithForm({
   formSubmitСallback: (data) => {
     profilePopup.downloadProcess("Сохранение...")
     api.editProfile(data)
+      .then(() => {
+        userInfo.setUserInfo(data.avatarName, data.avatarJob);
+        profilePopup.close();
+      })
       .catch((err) => console.log(`Ошибка ${err}`))
       .finally(() => profilePopup.downloadProcess("Сохранить"))
-    userInfo.setUserInfo(data.avatarName, data.avatarJob)
-    profilePopup.close();
   }
 });
 profilePopup.setEventListeners();
@@ -59,14 +61,13 @@ Promise.all([api.getInitialCards(), api.getProfileInfo()])
     userInfo.setUserInfo(userData.name, userData.about);
     userInfo.setUserAvatar(userData.avatar);
     userId = userData._id;
-    initialCards.forEach((item) => {
-      cardList.addItem(item);
-    })
+    initialCards.reverse();
+    cardList.renderItems(initialCards);
   })
   .catch((err) => console.log(`Ошибка ${err}`))
 
 const cardList = new Section(
-  (item) => generateCard(item),
+  (item) => { cardList.addItem(generateCard(item)) },
   cardListSelector);
 
 function generateCard(item) {
@@ -120,13 +121,17 @@ deletePopup.setEventListeners();
 const editAvatarPopup = new PopupWithForm({
   popupSelector: profileAvatarPopupSelector,
   formSubmitСallback: (data) => {
+    //Изменение кнопки при нажатии
     editAvatarPopup.downloadProcess("Сохранение...");
     api.editProfileAvatar(data)
+      .then(() => {
+        userInfo.setUserAvatar(data.avatarLink)
+        editAvatarPopup.close()
+        editAvatarPopupValid.resetValidation()
+      })
       .catch((err) => console.log(`Ошибка ${err}`))
+      //Изменение кнопки после загрузки
       .finally(() => editAvatarPopup.downloadProcess("Сохранить"));
-    userInfo.setUserAvatar(data.avatarLink)
-    editAvatarPopup.close();
-    editAvatarPopupValid.resetValidation();
   }
 });
 editAvatarPopup.setEventListeners();
@@ -140,10 +145,12 @@ const cardPopup = new PopupWithForm({
   formSubmitСallback: (data) => {
     cardPopup.downloadProcess("Создание...")
     api.addNewCard(data)
-      .then(item => cardList.addItem(item))
+      .then((item) => {
+        cardList.addItem(generateCard(item))
+        cardPopup.close()
+      })
       .catch((err) => console.log(`Ошибка ${err}`))
       .finally(() => cardPopup.downloadProcess("Создать"))
-    cardPopup.close();
   }
 });
 cardPopup.setEventListeners();
